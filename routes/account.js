@@ -1,7 +1,7 @@
 module.exports = function (app, models) {
     app.get('/accounts/:id/contacts', function (req, res) {
         var accountId = req.params.id === 'me' ? req.session.accountId : req.params.id;
-        models.Account.Instance.findById(accountId, function (error, account) {
+        models.Account.findById(accountId, function (account) {
             res.send(account.contacts);
         });
     });
@@ -13,7 +13,7 @@ module.exports = function (app, models) {
             return;
         }
 
-        models.Account.findByString(searchOption, function onSearchDown(errow, accounts) {
+        models.Account.findByString(searchOption, function onSearchDown(error, accounts) {
             if (error || accounts.length === 0) {
                 res.send(400);
             } else {
@@ -31,7 +31,7 @@ module.exports = function (app, models) {
             return;
         }
 
-        models.Account.Instance.findById(accountId, function (error, account) {
+        models.Account.findById(accountId, function (account) {
             if (account) {
                 models.Account.findById(contactId, function (contact) {
                     models.Account.addContact(account, contact);
@@ -54,12 +54,12 @@ module.exports = function (app, models) {
             return;
         }
 
-        models.Account.Instance.findById(accountId, function (Instance, account) {
+        models.Account.findById(accountId, function (account) {
             if (!account) {
                 return;
             }
 
-            models.Account.findById(contactId, function (contact, error) {
+            models.Account.findById(contactId, function (contact) {
                 if (!contact) {
                     return;
                 }
@@ -75,8 +75,8 @@ module.exports = function (app, models) {
     app.get('/accounts/:id', function (req, res) {
         var accountId = req.params.id === 'me' ? req.session.accountId : req.params.id;
 
-        models.Account.Instance.findById(accountId, function (error, account) {
-            if (accountId === 'me' || models.Account.Instance.hasContact(account, req.session.accountId)) {
+        models.Account.findById(accountId, function (account) {
+            if (accountId === 'me' || models.Account.hasContact(account, req.session.accountId)) {
                 account.isFriend = true;
             }
 
@@ -87,7 +87,7 @@ module.exports = function (app, models) {
     app.get('/accounts/:id/status', function (req, res) {
         var accountId = req.params.id === 'me' ? req.session.accountId : req.params.id;
 
-        models.Account.Instance.findById(accountId, function (error, account) {
+        models.Account.findById(accountId, function (account) {
             res.send(account.status);
         });
     });
@@ -95,7 +95,7 @@ module.exports = function (app, models) {
     app.post('/accounts/:id/status', function (req, res) {
         var accountId = req.params.id === 'me' ? req.session.accountId : req.params.id;
 
-        models.Account.Instance.findById(accountId, function (error, account) {
+        models.Account.findById(accountId, function (account) {
             var status = {
                 name: account.name,
                 status: req.param('status', '')
@@ -116,8 +116,8 @@ module.exports = function (app, models) {
     app.get('/accounts/:id/activity', function (req, res) {
         var accountId = req.params.id === 'me' ? req.session.accountId : req.params.id;
 
-        models.Account.Instance.findById(accountId, function (error, account) {
-            !account.activity && res.send(account.activity);
+        models.Account.findById(accountId, function (account) {
+            account.activity && res.send(account.activity);
         });
     });
 };

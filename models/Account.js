@@ -32,7 +32,9 @@ module.exports = function (config, mongoose, nodemailer) {
             year: {type: Number}
         },
         photoUrl: {type: String},
-        biography: {type: String}
+        biography: {type: String},
+        status: [Status],
+        activity: [Status]
     });
 
     var Account = mongoose.model('Account', AccountSchema);
@@ -117,6 +119,12 @@ module.exports = function (config, mongoose, nodemailer) {
         }, callback);
     };
 
+    var findById = function (accountId, callback) {
+        Account.findOne({_id: accountId}, function (error, doc) {
+            callback(doc);
+        });
+    };
+
     var addContact = function (account, contact) {
         contact = {
             name: contact.name,
@@ -164,11 +172,16 @@ module.exports = function (config, mongoose, nodemailer) {
     };
 
     return {
-        Instance: Account,
+        Account: Account,
         register: register,
         login: login,
         forgotPassword: forgotPassword,
         changePassword: changePassword,
+        findById: findById,
+        findByString: findByString,
+        addContact: addContact,
+        removeContact: removeContact,
+        hasContact: hasContact
     }
 };
 

@@ -1,9 +1,12 @@
 define(['text!templates/status.html'], function (template) {
     var view = Backbone.View.extend({
-        el: $('#content'),
+
+        initialize: function (options) {
+            this.model = options;
+        },
 
         render: function () {
-            this.$el.html(template);
+           return this.$el.html(template, this.model);
         }
     });
 

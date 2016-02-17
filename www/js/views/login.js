@@ -20,7 +20,7 @@ define(['text!templates/login.html'], function (loginTemplate) {
         login: function () {
             var socketEvents = this.socketEvents;
             $.post('/login', {email: $('input[name=email]').val(), password: $('input[name=password]').val()}, function (data) {
-                socketEvents.trigger('app:login');
+                socketEvents.trigger('app:loggedIn', data);
                 window.location.hash = 'index';
             }).error(function () {
                 $('#error').text('Unable to login.').slideDown();

@@ -38,7 +38,7 @@ define(
             index: function () {
                 var statusCollection = new StatusCollection();
                 statusCollection.url = '/accounts/me/activity';
-                this.changeView(new indexView({collection: statusCollection}));
+                this.changeView(new indexView({collection: statusCollection, socketEvents: this.socketEvents}));
                 statusCollection.fetch();
             },
 
@@ -56,7 +56,7 @@ define(
 
             profile: function (id) {
                 var model = new Account({id: id});
-                this.changeView(new profileView({model: model}));
+                this.changeView(new profileView({model: model, socketEvents: this.socketEvents}));
                 model.fetch();
             },
 

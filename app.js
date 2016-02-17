@@ -23,13 +23,13 @@ app.use(express.static(path.join(__dirname, 'www')));
 
 app.sessionSecret = 'SocialNet secret key';
 app.sessionStore =
-app.use(session({
-    secret: app.sessionSecret,
-    key: 'express.sid',
-    store: app.sessionStore,
-    resave: true,
-    saveUninitialized: true
-}));
+    app.use(session({
+        secret: app.sessionSecret,
+        key: 'express.sid',
+        store: app.sessionStore,
+        resave: true,
+        saveUninitialized: true
+    }));
 
 mongoose.connect(config.mongodb.server, function onMongooseError(error) {
     if (error) throw error;
@@ -74,6 +74,23 @@ app.post('/contacts/find', function (req, res) {
 
 
 module.exports = app;
+
+var events = require('events');
+
+var eventDispatcher = new events.EventEmitter();
+app.addEventListener = function (eventName, callback) {
+    eventDispatcher.on(eventName, callback);
+};
+app.removeEventListener = function (eventName, callback) {
+    eventDispatcher.removeListener(eventName, callback);
+};
+app.triggerEvent = function (eventName, eventOptions) {
+    eventDispatcher.emit(eventName, eventOptions);
+};
+
+app.isAccountOnline=function(accountId){
+    ///var clients=
+}
 
 
 

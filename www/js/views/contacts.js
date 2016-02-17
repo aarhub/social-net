@@ -1,5 +1,5 @@
 define(['views/contact', 'text!templates/contacts.html'],
-    function (ContactView, contactTemplate) {
+    function (contactView, contactTemplate) {
         var contactsView = Backbone.View.extend({
             el: $('#content'),
 
@@ -14,7 +14,7 @@ define(['views/contact', 'text!templates/contacts.html'],
             renderCollection: function (collection) {
                 collection.each(function (contact) {
                     var statusHtml = (
-                        new ContactView({
+                        new contactView({
                             removeButton: true,
                             model: contact
                         })

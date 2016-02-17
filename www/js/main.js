@@ -1,4 +1,4 @@
-define(['router'], function (router) {
+define(['router', 'sockets'], function (router, sockets) {
     var initialize = function () {
         checkLogin(runApp);
     }
