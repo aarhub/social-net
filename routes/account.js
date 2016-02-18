@@ -1,5 +1,5 @@
 module.exports = function (app, models) {
-    app.get('/accounts/:id/contacts', function (req, res) {
+    app.get('/account/:id/contacts', function (req, res) {
         var accountId = req.params.id === 'me' ? req.session.accountId : req.params.id;
         models.Account.findById(accountId, function (account) {
             res.send(account.contacts);
@@ -35,13 +35,13 @@ module.exports = function (app, models) {
             if (account) {
                 models.Account.findById(contactId, function (contact) {
                     models.Account.addContact(account, contact);
-
-                    //// Make the reserve link
                     models.Account.addContact(contact, account);
                     account.save();
                 })
             }
         });
+
+        res.send(200);
     });
 
     app.delete('/accounts/:id/contact', function (req, res) {

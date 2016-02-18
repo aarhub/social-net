@@ -32,7 +32,8 @@ define(
                 'register': 'register',
                 'forgotPassword': 'forgotPassword',
                 'profile/:id': 'profile',
-                'contacts/:id': 'contacts'
+                'contacts/:id': 'contacts',
+                'addContact': 'addContact'
             },
 
             index: function () {
@@ -64,7 +65,12 @@ define(
                 var contactId = id ? id : 'me';
                 var contacts = new ContactCollection();
                 contacts.url = '/account/' + contactId + '/contacts';
-                this.changeView(new contactsView({}));
+                this.changeView(new contactsView({collection: contacts}));
+                contacts.fetch();
+            },
+
+            addContact:function(){
+                this.changeView(new addContactView());
             },
 
             changeView: function (view) {

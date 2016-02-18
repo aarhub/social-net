@@ -1,6 +1,6 @@
-define(['models/Contact', 'views/Contact', 'text!templates/addContact.html'],
-    function (Contact, ContactView, addContactTemplate) {
-        var addContactView = Backbone.View.extend({
+define(['models/Contact', 'views/contact', 'text!templates/addContact.html'],
+    function (Contact, contactView, template) {
+        var view = Backbone.View.extend({
             el: $('#content'),
 
             events: {
@@ -9,11 +9,11 @@ define(['models/Contact', 'views/Contact', 'text!templates/addContact.html'],
 
             render: function (contacts) {
                 var self = this;
-                this.$el.html(_.template(addContactTemplate));
+                this.$el.html(_.template(template));
                 if (null != contacts) {
                     _.each(contacts, function (item) {
                         var model = new Contact(item);
-                        var html = (new ContactView({addButton: true, model: model})).render().el;
+                        var html = (new contactView({addButton: true, model: model})).render().el;
 
                         $('#results').append(html);
                     });
@@ -34,5 +34,5 @@ define(['models/Contact', 'views/Contact', 'text!templates/addContact.html'],
             }
         });
 
-        return addContactView;
+        return view;
     });

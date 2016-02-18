@@ -33,6 +33,7 @@ module.exports = function (config, mongoose, nodemailer) {
         },
         photoUrl: {type: String},
         biography: {type: String},
+        contacts: [Contact],
         status: [Status],
         activity: [Status]
     });
@@ -113,7 +114,7 @@ module.exports = function (config, mongoose, nodemailer) {
         var regex = new RegExp(option, 'i');
         Account.find({
             $or: [
-                {'name.full': {$regex: searchOption}},
+                {'name.full': {$regex: option}},
                 {email: {$regex: regex}}
             ]
         }, callback);

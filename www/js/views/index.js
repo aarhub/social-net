@@ -16,7 +16,7 @@ define(['text!templates/index.html', 'views/status', 'models/Status'],
             },
 
             render: function () {
-                this.$el.html(template);
+                this.$el.html(_.template(template));
             },
 
             addStatus: function () {

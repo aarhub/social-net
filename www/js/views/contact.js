@@ -1,5 +1,5 @@
-define(['text!templates/contact.html'], function (contactTemplate) {
-    var contactView = Backbone.View.extend({
+define(['text!templates/contact.html'], function (template) {
+    var view = Backbone.View.extend({
         addButton: false,
 
         removeButton: false,
@@ -7,8 +7,31 @@ define(['text!templates/contact.html'], function (contactTemplate) {
         tagName: 'li',
 
         events: {
-            'click .addbutton': 'addContact',
-            'click .removeButton': 'removeContact'
+            'click #addContact': 'addContact',
+            'click #removeContact': 'removeContact'
+        },
+
+        initialize: function (options) {
+            this.options = options || {}
+            if (this.options.addButton) {
+                this.addButton = this.options.addButton;
+            }
+
+            if (this.options.removeButton) {
+                this.removeButton = this.options.removeButton;
+            }
+        },
+
+        render: function () {
+            var obj = {
+                model: this.model.toJSON(),
+                addButton: this.addButton,
+                removeButton: this.removeButton
+            };
+
+            this.$el.html(_.template(template)(obj));
+
+            return this;
         },
 
         addContact: function () {
@@ -38,26 +61,8 @@ define(['text!templates/contact.html'], function (contactTemplate) {
             });
         },
 
-        initialize: function () {
-            if (this.options.addButton) {
-                this.addButton = this.options.addButton;
-            }
 
-            if (this.options.removeButton) {
-                this.removeButton = this.options.removeButton;
-            }
-        },
-
-        render: function () {
-            $(this.el).html(_.template(contactTemplate, {
-                model: this.model.toJSON(),
-                addButton: this.addButton,
-                removeButton: this.removeButton
-            }));
-
-            return this;
-        }
     });
 
-    return contactView;
+    return view;
 });
