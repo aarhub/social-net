@@ -1,5 +1,5 @@
 define(['views/contact', 'text!templates/contacts.html'],
-    function (contactView, contactTemplate) {
+    function (contactView, template) {
         var contactsView = Backbone.View.extend({
             el: $('#content'),
 
@@ -8,7 +8,7 @@ define(['views/contact', 'text!templates/contacts.html'],
             },
 
             render: function () {
-                this.$el.html(contactTemplate);
+                this.$el.html(template);
             },
 
             renderCollection: function (collection) {

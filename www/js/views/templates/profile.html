@@ -1,14 +1,19 @@
-<h1><%= name.first %><%= name.last %></h1>
+<div class="center profile">
+    <h1><%= name.first %>&nbsp;&nbsp;<%= name.last %></h1>
 
-<form>
-    <fieldset>
-        <legend>Add Status</legend>
+    <form class="form-inline">
+        <fieldset>
+            <legend>Add Status</legend>
 
-        <input type="text" name="status"/>
-        <input type="submit" value="Add" />
-    </fieldset>
-</form>
+            <div class="form-group">
+                <input type="text" name="status" class="form-control"/>
+                <input type="submit" value="Add" class="btn btn-default"/>
+            </div>
 
-<h2>Status Updates</h2>
+        </fieldset>
+    </form>
 
-<ul class="status_list"></ul>
+    <h2>Status Updates</h2>
+
+    <ul class="status_list"></ul>
+</div>

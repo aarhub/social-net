@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+#content{width:1024px;}
+
+.center{margin: 0 auto;}
+.index{width:800px;}
+.login{width:400px;}
+.forgot{width:400px;}
+.register{width:500px;}
+.profile{width:800px;}

@@ -19,13 +19,12 @@ define(['text!templates/profile.html', 'text!templates/status.html', 'models/Sta
                     this.socketEvents.bind('status' + this.model.get('_id'), this.onSocketStatusAdded, this);
                 }
 
-                var that = this;
-                this.$el.html(_.template(profileTemplate, this.model.toJSON()));
+                this.$el.html(_.template(profileTemplate)(this.model.toJSON()));
 
                 var statusCollection = this.model.get('status');
                 if (null != statusCollection) {
                     _.each(statusCollection, function (item) {
-                        var status = new Status(item);
+                        var status = new statusView(item);
                         self.prependStatus(status);
                     });
                 }

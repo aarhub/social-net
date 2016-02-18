@@ -1,41 +1,71 @@
-<h1>Register</h1>
+<div class="center register">
 
-<form>
-    <fieldset>
-        <legend>Your Name</legend>
-        <label>
-            First Name:<input type="text" name="firstName"/>
-        </label>
-        <label>
-            Last Name:<input type="text" name ="lastName"/>
-        </label>
-    </fieldset>
-    <fieldset>
-        <legend>Email Address</legend>
-        <label>
-            Email:<input type="text" name="email"/>
-        </label>
-        <br/>
-        <label>
-            Email(confirm):<input type="text" name="cemail"/>
-        </label>
-    </fieldset>
-    <fieldset>
-        <legend>Password</legend>
-        <label>
-            Password:<input type="password" name="password"/>
-        </label>
+    <h1>Register</h1>
 
-        <br/>
+    <form class="form-horizontal">
 
-        <label>
-            Password(confirm):<input type="password" name="cpassword"/>
-        </label>
+        <fieldset>
+            <legend>Your Name</legend>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">First Name:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="firstName" class="form-control"/>
+                    </div>
 
-        <br/>
+                </div>
 
-        <label>
-            <input type="submit" value="Register Now"/>
-        </label>
-    </fieldset>
-</form>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Last Name:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="lastName" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Email Address</legend>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Email:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="email" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Email(confirm):</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="cemail" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Password</legend>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Password:</label>
+                    <div class="col-sm-8">
+                        <input type="password" name="password" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Password(confirm):</label>
+                    <div class="col-sm-8">
+                        <input type="Password" name="cpassword" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <div class="form-group" style="text-align: center;">
+            <input type="submit" value="Reset Now" class="btn btn-primary"/>
+        </div>
+    </form>
+
+</div>
